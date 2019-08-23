@@ -71,5 +71,26 @@ class BookController extends ApiController
 
     }
 
+    /**
+   * @Route("/api/v1/books/{id}", methods="DELETE")
+   */
+    public function delete($id, EntityManagerInterface $em, BookRepository $bookRepository)
+    {
+        if (! $this->isAuthorized()) {
+          return $this->respondUnauthorized();
+        }
+        $book = $bookRepository->find($id);
+        if (! $book) {
+            return $this->respondNotFound();
+        }
 
+        $em->remove($book);
+        $em->flush();
+
+        // Suggestion: add a message in the flashbag
+
+        $books = $bookRepository->transformAll();
+
+        return $this->respond($books);
+    }
 }
