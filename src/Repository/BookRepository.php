@@ -25,7 +25,8 @@ class BookRepository extends ServiceEntityRepository
         return [
                 'id'    => (int) $book->getId(),
                 'name' => (string) $book->getName(),
-                'author' => (int) $book->getAuthorid()
+                'author' => (int) $book->getAuthorid(),
+                'updated_at' => (string) $book->getUpdated_at()
         ];
     }
 

@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\AuthorRepository")
  */
-class Book
+class Author
 {
     /**
      * @ORM\Id()
@@ -21,15 +21,6 @@ class Book
      */
     private $name;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $authorid;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $updated_at;
 
     public function getId(): ?int
     {
@@ -49,22 +40,4 @@ class Book
         return $this;
     }
 
-
-    public function getUpdated_at(): ?string
-    {
-        return $this->updated_at;
-    }
-
-
-    public function getAuthorid(): ?int
-    {
-        return $this->authorid;
-    }
-
-    public function setAuthorid(int $authorid): self
-    {
-        $this->authorid = $authorid;
-
-        return $this;
-    }
 }

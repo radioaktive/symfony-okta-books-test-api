@@ -1,6 +1,63 @@
 # symfony-okta-books-test-api
-symfony test secure api with okta authentication.
+Symfony test secure API with Okta authentication.
 
-react dashboard for this api: https://github.com/radioaktive/react-octa-book-dashboard
+React dashboard for this API: https://github.com/radioaktive/react-octa-book-dashboard
 
-![](https://raw.githubusercontent.com/radioaktive/symfony-okta-books-test-api/master/docs/img/booklist.png)
+#### API Endpoints
+
+![](https://raw.githubusercontent.com/radioaktive/symfony-okta-books-test-api/master/docs/img/bookslist2.png)
+
+/api/v1/books/list
+
+methods="GET"
+
+---
+
+/api/v1/books/add
+
+methods="POST"
+
+(Authenticated)
+
+---
+
+/api/v1/books/by-id/{id}
+
+methods="GET"
+
+---
+
+/api/v1/books/{id}
+
+methods="DELETE"
+
+(Authenticated)
+
+
+![](https://raw.githubusercontent.com/radioaktive/symfony-okta-books-test-api/master/docs/img/authorslist.png)
+
+/api/v1/authors/list
+
+methods="GET"
+
+---
+
+/api/v1/authors/add
+
+methods="POST"
+
+(Authenticated)
+
+---
+
+/api/v1/authors/by-id/{id}
+
+methods="GET"
+
+---
+
+/api/v1/authors/{id}
+
+methods="DELETE"
+
+(Authenticated)
