@@ -2,7 +2,13 @@
 
 Symfony test secure CRUD API with Okta authentication.
 
-React dashboard for this API: https://github.com/radioaktive/react-octa-book-dashboard
+React dashboard for this API:
+
+https://github.com/radioaktive/react-octa-book-dashboard
+
+React/Redux frontend for this API:
+
+https://github.com/radioaktive/react-redux-test-books
 
 #### API Endpoints
 
