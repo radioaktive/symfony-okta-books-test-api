@@ -42,7 +42,7 @@ class AuthorController extends ApiController
 
         // persist the new author
         $author = new Author;
-        $autor->setName($request->get('name'));
+        $author->setName($request->get('name'));
         $em->persist($author);
         $em->flush();
 
@@ -68,6 +68,41 @@ class AuthorController extends ApiController
     }
 
     /**
+    * @Route("/api/v1/authors/update/{id}", methods="POST")
+    */
+    public function update($id, Request $request, EntityManagerInterface $em, AuthorRepository $authorRepository)
+      {
+          if (! $this->isAuthorized()) {
+            return $this->respondUnauthorized();
+          }
+          $author = $authorRepository->find($id);
+
+          if (! $author) {
+              return $this->respondNotFound();
+          }
+
+          $request = $this->transformJsonBody($request);
+          if (! $request) {
+              return $this->respondValidationError('Please provide a valid request!');
+          }
+
+          // validate the name
+          if (! $request->get('name')) {
+              return $this->respondValidationError('Please provide a name!');
+          }
+
+          $author->setName($request->get('name'));
+          $em->persist($author);
+          $em->flush();
+
+          return $this->respond([
+              'name' => $author->getName()
+          ]);
+    }
+
+
+
+    /**
    * @Route("/api/v1/authors/{id}", methods="DELETE")
    */
     public function delete($id, EntityManagerInterface $em, AuthorRepository $authorRepository)
@@ -75,6 +110,7 @@ class AuthorController extends ApiController
         if (! $this->isAuthorized()) {
           return $this->respondUnauthorized();
         }
+
         $author = $authorRepository->find($id);
         if (! $author) {
             return $this->respondNotFound();
@@ -85,7 +121,7 @@ class AuthorController extends ApiController
 
         // Suggestion: add a message in the flashbag
 
-        $auhors = $bookRepository->transformAll();
+        $authors = $authorRepository->transformAll();
 
         return $this->respond($authors);
     }

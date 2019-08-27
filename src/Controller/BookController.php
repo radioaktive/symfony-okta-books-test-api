@@ -71,6 +71,49 @@ class BookController extends ApiController
 
     }
 
+
+    /**
+    * @Route("/api/v1/books/update/{id}", methods="POST")
+    */
+    public function update($id, Request $request, EntityManagerInterface $em, BookRepository $bookRepository)
+      {
+          if (! $this->isAuthorized()) {
+            return $this->respondUnauthorized();
+          }
+          
+          $book = $bookRepository->find($id);
+
+          if (! $book) {
+              return $this->respondNotFound();
+          }
+
+          $request = $this->transformJsonBody($request);
+          if (! $request) {
+              return $this->respondValidationError('Please provide a valid request!');
+          }
+
+          // validate the name
+          if (! $request->get('name')) {
+              return $this->respondValidationError('Please provide a name!');
+          }
+
+          if (! $request->get('authorid')) {
+              return $this->respondValidationError('Please provide a authorid!');
+          }
+
+
+          $book->setAuthorid($request->get('authorid'));
+          $book->setName($request->get('name'));
+          $em->persist($book);
+          $em->flush();
+
+          return $this->respond([
+              'author' => $book->getAuthorid(),
+              'name' => $book->getName()
+          ]);
+    }
+
+
     /**
    * @Route("/api/v1/books/{id}", methods="DELETE")
    */

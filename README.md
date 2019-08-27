@@ -1,13 +1,8 @@
 # symfony-okta-books-test-api
-Symfony test secure API with Okta authentication.
 
-React dashboard for this API:
+Symfony test secure CRUD API with Okta authentication.
 
-https://github.com/radioaktive/react-octa-book-dashboard
-
-React/Redux frontend for public part for this API:
-
-https://github.com/radioaktive/react-redux-test-books
+React dashboard for this API: https://github.com/radioaktive/react-octa-book-dashboard
 
 #### API Endpoints
 
@@ -30,6 +25,13 @@ methods="POST"
 /api/v1/books/by-id/{id}
 
 methods="GET"
+
+---
+/api/v1/books/update/{id}
+
+methods="POST"
+
+(Authenticated)
 
 ---
 
@@ -59,6 +61,14 @@ methods="POST"
 /api/v1/authors/by-id/{id}
 
 methods="GET"
+
+---
+
+/api/v1/authors/update/{id}
+
+methods="POST"
+
+(Authenticated)
 
 ---
 
